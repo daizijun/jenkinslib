@@ -10,4 +10,3 @@ def PrintMes(value,color){
         println(colors[color])
     }
 }
-
