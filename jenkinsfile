@@ -2,9 +2,11 @@
 
 @Library('jenkinslib') _
 
-def mytools = new org.devops.tools()
+def tools = new org.devops.tools()
 
 String workspace = "/opt/jenkins/workspace"
+
+hello()
 
 pipeline{
 agent { node { label "master"       //指定运行此流水线的节点
@@ -33,6 +35,8 @@ stages{
             script{
                 input id: 'Test', message: '我们是否要继续', ok: '是，继续吧', parameters: [choice(choices: ['a', 'b'], name: 'test')], submitter: 'alice,bob'
                 println("获取代码")
+                
+                tools.PrintMes("this is my lib!")
             }
             echo activeEnv
         }
@@ -63,7 +67,6 @@ stages{
                 
                     sh "${mvnHome}/bin/mvn --version"
                     
-                    tools.PrintMes("this is my lib!")
                 }
                     echo "test parameters参数${params.DEPLOY_ENV}"
             }
