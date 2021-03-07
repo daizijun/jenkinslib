@@ -3,6 +3,7 @@
 @Library('jenkinslib') _
 
 def tools = new org.devops.tools()
+def mytools = new org.devops.ToolsColors()
 
 String workspace = "/opt/jenkins/workspace"
 
@@ -35,6 +36,7 @@ stages{
             script{
                 input id: 'Test', message: '我们是否要继续', ok: '是，继续吧', parameters: [choice(choices: ['a', 'b'], name: 'test')], submitter: 'alice,bob'
                 println("获取代码")
+                mytools.PrintMes("获取代码",'green')
                 
                 tools.PrintMes("this is my lib!")
             }
@@ -50,6 +52,7 @@ stages{
             steps{
                 script{
                     println("运行构建")
+                    mytools.PrintMes("运行构建",'green')
                     mvnHome = tool "m2"
                     println(mvnHome)
                 
@@ -62,6 +65,7 @@ stages{
             steps{
                 script{
                     println("运行构建")
+                    mytools.PrintMes("运行构建",'green')
                     mvnHome = tool "m2"
                     println(mvnHome)
                 
